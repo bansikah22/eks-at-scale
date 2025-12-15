@@ -2,7 +2,7 @@
 
 Amazon EKS’s architecture follows the standard Kubernetes cluster design while adding AWS-managed services to simplify operations and increase reliability.
 
-```
+```mermaid
 flowchart LR
     %% =========================
     %% Control Plane (AWS Managed)
