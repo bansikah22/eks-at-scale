@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: cloudnotes
+  labels:
+    app: cloudnotes
+    managed-by: argocd

@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: cloudnotes-backend
+  namespace: cloudnotes
+  labels:
+    app: cloudnotes
+    component: backend
+spec:
+  type: ClusterIP
+  selector:
+    app: cloudnotes
+    component: backend
+  ports:
+  - protocol: TCP
+    port: 5000
+    targetPort: 5000

@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cloudnotes-backend
+  namespace: cloudnotes
+  labels:
+    app: cloudnotes
+    component: backend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: cloudnotes
+      component: backend
+  template:
+    metadata:
+      labels:
+        app: cloudnotes
+        component: backend
+    spec:
+      containers:
+      - name: backend
+        image: bansikah/cloudnotes-backend:latest
+        ports:
+        - containerPort: 5000
+        env:
+        - name: NODE_ENV
+          value: "production"
+        - name: PORT
+          value: "5000"
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
+          limits:
+            cpu: "500m"
+            memory: "512Mi"
+        readinessProbe:
+          httpGet:
+            path: /api/health
+            port: 5000
+          initialDelaySeconds: 10
+          periodSeconds: 5
+        livenessProbe:
+          httpGet:
+            path: /api/health
+            port: 5000
+          initialDelaySeconds: 15
+          periodSeconds: 10

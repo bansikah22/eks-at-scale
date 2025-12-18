@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cloudnotes-frontend
+  namespace: cloudnotes
+  labels:
+    app: cloudnotes
+    component: frontend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: cloudnotes
+      component: frontend
+  template:
+    metadata:
+      labels:
+        app: cloudnotes
+        component: frontend
+    spec:
+      containers:
+      - name: frontend
+        image: bansikah/cloudnotes-frontend:latest
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            cpu: "50m"
+            memory: "64Mi"
+          limits:
+            cpu: "200m"
+            memory: "256Mi"
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 5
+          periodSeconds: 5
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 10
+          periodSeconds: 10

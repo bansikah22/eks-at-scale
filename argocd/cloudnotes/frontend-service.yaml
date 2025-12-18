@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: cloudnotes-frontend
+  namespace: cloudnotes
+  labels:
+    app: cloudnotes
+    component: frontend
+spec:
+  type: LoadBalancer
+  selector:
+    app: cloudnotes
+    component: frontend
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
