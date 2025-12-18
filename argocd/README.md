@@ -11,6 +11,7 @@ argocd/
 │   └── cloudnotes.yaml          # Argo CD Application resource
 └── cloudnotes/
     ├── namespace.yaml           # Kubernetes namespace
+    ├── nginx-configmap.yaml     # Nginx config for API proxy
     ├── backend-deployment.yaml  # Backend deployment
     ├── backend-service.yaml     # Backend service (ClusterIP)
     ├── frontend-deployment.yaml # Frontend deployment
